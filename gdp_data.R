@@ -1,0 +1,5 @@
+library(tidyverse)
+gdp_data <- read.csv("datafile.csv")
+gdp_total <- data.frame(gdp_data$Financial.Year,gdp_data$Gross.Domestic.Product..in.Rs..Cr..at.2004.05.Prices,gdp_data$Agriculture...Allied.Services..in.Rs..Cr...at.2004.05.Prices,gdp_data$Agriculture..in.Rs..Cr...at.2004.05.Prices,gdp_data$Industry..in.Rs..Cr...at.2004.05.Prices,gdp_data$Mining.and.Quarrying..in.Rs..Cr...at.2004.05.Prices,gdp_data$Manufacturing..in.Rs..Cr...at.2004.05.Prices,gdp_data$Services..in.Rs..Cr...at.2004.05.Prices)
+names(gdp_total) <- c("Financial_Year","Total_GDP","Agriculture_allied_services","Agriculture","Industry","Mining_and_quarrying","Manufacturing","Services")
+names(gdp_test) <- c("Financial_Year","Total_GDP","Agriculture_allied_services","Agriculture","Industry","Mining_and_quarrying","Manufacturing","Services")
