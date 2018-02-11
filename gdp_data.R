@@ -20,5 +20,7 @@ gdp_share <- subset(gdp_share,select = - Total_GDP)
 gdp_share <- mutate(gdp_share,gdp_data$Financial.Year)
 colnames(gdp_share)[colnames(gdp_share) == "gdp_data$Financial.Year"] <- "Financial_year"
 plot_gdp <- melt(gdp_share,id.vars="Financial_year")
-#ggplot(plot_gdp, aes(x = Financial_year, y = value)) + geom_line(aes(color = variable,group = variable)) # To plot Financial year vs value
-
+colnames(plot_gdp)[colnames(plot_gdp)=="variable"] <-"Department"
+plot_gdp$value <- plot_gdp$value * 100
+colnames(plot_gdp)[colnames(plot_gdp)=="value"] <- "Percentage_share"
+ggplot(plot_gdp, aes(x = Financial_year, y = Percentage_share)) + geom_line(aes(color = Department,group = Department))  # To plot Financial year vs value
