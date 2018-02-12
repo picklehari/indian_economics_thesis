@@ -15,8 +15,8 @@ gdp_share <-data.frame(gdp_data$Gross.Domestic.Product..in.Rs..Cr..at.2004.05,gd
 names(gdp_share) <- c("Total_GDP","Agriculture_allied_services","Agriculture","Industry","Mining_and_quarrying","Manufacturing","Services")
 gdp_share <- gdp_share/gdp_share$Total_GDP
 gdp_share <- subset(gdp_share,select = - Total_GDP)
-#gdp_share <-mutate(gdp_share,1-rowSums(gdp_share))
-#colnames(gdp_share)[colnames(gdp_share) == "1 - rowSums(gdp_share)"] <- "Others"
+gdp_share <-mutate(gdp_share,1-rowSums(gdp_share))
+colnames(gdp_share)[colnames(gdp_share) == "1 - rowSums(gdp_share)"] <- "Others"
 gdp_share <- mutate(gdp_share,gdp_data$Financial.Year)
 colnames(gdp_share)[colnames(gdp_share) == "gdp_data$Financial.Year"] <- "Financial_year"
 plot_gdp <- melt(gdp_share,id.vars="Financial_year")
