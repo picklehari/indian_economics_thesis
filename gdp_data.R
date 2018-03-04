@@ -20,7 +20,6 @@ colnames(plot_gdp)[colnames(plot_gdp)=="value"] <- "Percentage_share"
 gdp_growth <-data.frame(gdp_data$Financial.Year,gdp_data$Gross.Domestic.Product.....Growth.Rate..YoY.,gdp_data$Agriculture.....Growth.Rate..YoY.,gdp_data$Agriculture.....Growth.Rate..YoY.,gdp_data$Industry.....Growth.Rate..YoY.,gdp_data$Mining.and.Quarrying.....Growth.Rate..YoY.,gdp_data$Manufacturing.....Growth.Rate..YoY.,gdp_data$Services.....Growth.Rate..YoY.)
 names(gdp_growth) <-c("Financial_year","Total_gdp","Agriculture","Agriculture_allied_services","Industry","Mining_and_quarrying","Manufacturing","Services")
 plot_growth <- melt(gdp_growth,id.vars="Financial_year")
-#ggplot(plot_growth,aes(x = Financial_year,y= value))+geom_line(aes(color = variable,group = variable))
 
 # Sector wise GDP growth per unit increase in Total GDP 
 gdp_growth <-subset(gdp_growth,select = -Financial_year)
@@ -29,4 +28,6 @@ gdp_growth <-mutate(gdp_growth,gdp_data$Financial.Year)
 colnames(gdp_growth)[colnames(gdp_growth) == "gdp_data$Financial.Year" ] = "Financial_year"
 gdp_growth <- subset(gdp_growth, select = -Total_gdp)
 plot_growth <- melt(gdp_growth,id.vars="Financial_year")
-colnames(plot_growth) <- c("Financial_year","Sector","Percentage growth")
+colnames(plot_growth) <- c("Financial_year","Sector","Percentage_growth")
+#ggplot(plot_growth,aes(x = Financial_year,y= Percentage_growth))+geom_line(aes(color = Sector,group = Sector))
+gdp_agri_manufacturing <- subset(plot_growth,Sector == "Agriculture"|Sector == "Manufacturing")
