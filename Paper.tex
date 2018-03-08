@@ -1,0 +1,205 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Economic Growth post Independence},
+            pdfauthor={Hariraj K},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+  \title{Economic Growth post Independence}
+  \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+  \author{Hariraj K}
+  \preauthor{\centering\large\emph}
+  \postauthor{\par}
+  \predate{\centering\large\emph}
+  \postdate{\par}
+  \date{March 6, 2018}
+
+
+\begin{document}
+\maketitle
+
+\subsection{India: A case study}\label{india-a-case-study}
+
+The mid 20th century saw formation of new democratic nations
+worldwide.It has also seen countries become world leaders and rapid
+development like never before, even though most nations saw
+industrialization as the ideal way to economic development and
+prosperity.
+
+\subsection{India GDP over the years}\label{india-gdp-over-the-years}
+
+\begin{verbatim}
+##       Year GDP in Crores
+## 1  1951-52        286147
+## 2  1952-53        294267
+## 3  1953-54        312177
+## 4  1954-55        325431
+## 5  1955-56        333766
+## 6  1956-57        352766
+## 7  1957-58        348500
+## 8  1958-59        374948
+## 9  1959-60        383153
+## 10 1960-61        410279
+## 11 1961-62        423011
+## 12 1962-63        431960
+## 13 1963-64        453829
+## 14 1964-65        488247
+## 15 1965-66        470402
+## 16 1966-67        475190
+## 17 1967-68        513860
+## 18 1968-69        527270
+## 19 1969-70        561630
+## 20 1970-71        589787
+## 21 1971-72        595741
+## 22 1972-73        593843
+## 23 1973-74        620872
+## 24 1974-75        628079
+## 25 1975-76        684634
+## 26 1976-77        693191
+## 27 1977-78        744972
+## 28 1978-79        785965
+## 29 1979-80        745083
+## 30 1980-81        798506
+## 31 1981-82        843426
+## 32 1982-83        868092
+## 33 1983-84        936270
+## 34 1984-85        973357
+## 35 1985-86       1013866
+## 36 1986-87       1057612
+## 37 1987-88       1094993
+## 38 1988-89       1206243
+## 39 1989-90       1280228
+## 40 1990-91       1347889
+## 41 1991-92       1367171
+## 42 1992-93       1440504
+## 43 1993-94       1522344
+## 44 1994-95       1619694
+## 45 1995-96       1737741
+## 46 1996-97       1876319
+## 47 1997-98       1957032
+## 48 1998-99       2087828
+## 49 1999-2K       2246276
+## 50 2000-01       2342774
+## 51 2001-02       2472052
+## 52 2002-03       2570690
+## 53 2003-04       2777813
+## 54 2004-05       2971464
+## 55 2005-06       3253073
+## 56 2006-07       3564364
+## 57 2007-08       3896636
+## 58 2008-09       4158676
+## 59 2009-10       4516071
+## 60 2010-11       4937006
+## 61 2011-12       5243582
+\end{verbatim}
+
+\subsection{Indian GDP share}\label{indian-gdp-share}
+
+Pre-Independent India remained an agriculture based nation.However,
+there has been a rather steep decline in the agriculture based labour
+force. Census data indicated that the percentage of farmers went down
+from 40\% of the total population in 2001 to 33\% in 2011. However, the
+IT boom in India has resulted in significant increase in the Service
+sector. Interestingly enough, the growth of the Service sector remains
+near linear with negative slope with respect to the increase in the
+Agriculture Sector.
+
+\includegraphics{Paper_files/figure-latex/plot_a-1.pdf}
+\includegraphics{Paper_files/figure-latex/plot_b-1.pdf}
+
+\subsection{Sector wise growth of Indian
+GDP}\label{sector-wise-growth-of-indian-gdp}
+
+India being a nation with diversity in lifestyle(s), it becomes evident
+that the GDP growth over the years are erratic, and the result of
+several factors.
+
+\includegraphics{Paper_files/figure-latex/plot_c-1.pdf} \#\# India and
+the World Though India remains to be one of the wealthiest countries in
+the world, its large population leads to major income disparity. The
+nation remained a closed economy for most it's time in the past. Yet,
+the liberalization of the economy in 1990's had a huge impact on the
+Indian economy. The economy of the nation had, ever since then, a growth
+rate more significant than that of the total world GDP.
+\includegraphics{Paper_files/figure-latex/plot_d-1.pdf} \#\# Conclusion
+Although the Indian approach towards finance managment tells a success
+story, other factors such as high population and high income
+inequalities remain a barrier India has to surpass to become a world
+superpower. Plotting real per capita GDP we infer that India still has a
+long way to go to achieve economic prosperty.The plot below shows the
+Real GDP of countries.
+\includegraphics{Paper_files/figure-latex/plot_e-1.pdf} \#\#\# Sources -
+\href{data.gov.in}{Govt. of India open data} -
+\href{ourworldindata.org}{Our World in data}
+
+
+\end{document}

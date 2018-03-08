@@ -12,10 +12,10 @@ gdp_percent <- subset(gdp_percent,select = - Total_GDP)
 gdp_percent <- mutate(gdp_percent,gdp_data$Financial.Year)
 colnames(gdp_percent)[colnames(gdp_percent) == "gdp_data$Financial.Year"] <- "Financial_year"
 plot_gdp <- melt(gdp_percent,id.vars="Financial_year")
-colnames(plot_gdp)[colnames(plot_gdp)=="variable"] <-"Department"
+colnames(plot_gdp)[colnames(plot_gdp)=="variable"] <-"Sector"
 plot_gdp$value <- plot_gdp$value * 100
 colnames(plot_gdp)[colnames(plot_gdp)=="value"] <- "Percentage_share"
-#ggplot(plot_gdp, aes(x = Financial_year, y = Percentage_share)) + geom_line(aes(color = Department,group = Department))  # To plot Financial year vs value
+#ggplot(plot_gdp, aes(x = Financial_year, y = Percentage_share)) + geom_line(aes(color = Sector,group = Sector))  # To plot Financial year vs value
 
 gdp_growth <-data.frame(gdp_data$Financial.Year,gdp_data$Gross.Domestic.Product.....Growth.Rate..YoY.,gdp_data$Agriculture.....Growth.Rate..YoY.,gdp_data$Agriculture.....Growth.Rate..YoY.,gdp_data$Industry.....Growth.Rate..YoY.,gdp_data$Mining.and.Quarrying.....Growth.Rate..YoY.,gdp_data$Manufacturing.....Growth.Rate..YoY.,gdp_data$Services.....Growth.Rate..YoY.)
 names(gdp_growth) <-c("Financial_year","Total_gdp","Agriculture","Agriculture_allied_services","Industry","Mining_and_quarrying","Manufacturing","Services")

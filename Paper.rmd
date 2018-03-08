@@ -1,0 +1,71 @@
+---
+title: "Economic Growth post Independence"
+author: "Hariraj K"
+date: "March 6, 2018"
+output: 
+  html_document:
+    runtime: shiny
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## India: A case study
+ The mid 20th century saw formation of new democratic nations worldwide.It has also seen countries become world leaders and rapid development like never before,
+even though most nations saw industrialization as the ideal way to economic development and prosperity.
+
+
+```{r datasets, include=FALSE}
+source("Comaprisons.R")
+library(shiny)
+library(DT)
+```
+
+## India GDP over the years
+
+```{r india_GDP, include=TRUE}
+total_indian_gdp <- subset(gdp_data,select = c(Financial.Year,Gross.Domestic.Product..in.Rs..Cr..at.2004.05.Prices))
+names(total_indian_gdp) <- c("Year","GDP in Crores")
+DT::renderDataTable(total_indian_gdp)
+```
+
+## Indian GDP share
+
+Pre-Independent India remained an agriculture based nation.However, there has been a rather steep decline in the agriculture based labour force. Census data indicated that the percentage of farmers went down from 40% of the total population in 2001 to 33% in 2011. However, the IT boom in India has resulted in significant increase in the Service sector. Interestingly enough, the growth of the Service sector remains near linear with negative slope with respect to the increase in the Agriculture Sector.
+
+```{r plot_a}
+ggplot(plot_gdp, aes(x = Financial_year, y = Percentage_share)) + geom_line(aes(color = Sector,group = Sector))
+
+```
+```{r plot_b}
+ggplot(gdp_growth,aes(x = Agriculture, y = Services)) + geom_line()+ xlab("Percentage Growth of Agriculture to total GDP") + ylab("Percentage Growth of Service Sector to total GDP")
+```
+
+## Sector wise growth of Indian GDP
+
+India being a nation with diversity in lifestyle(s), it becomes evident that the GDP growth over the years are erratic, and the result of several factors.
+
+```{r plot_c}
+ggplot(plot_growth,aes(x = Financial_year,y= Percentage_growth))+geom_line(aes(color = Sector,group = Sector)) + xlab("Financial Year")+ylab("Percentage Growth")
+
+```
+
+## India and the World
+
+Though India remains to be one of the wealthiest countries in the world, its large population leads to major income disparity. The nation remained a closed economy for most it’s time in the past. Yet, the liberalization of the economy in 1990's had a huge impact on the Indian economy. The economy of the nation had, ever since then, a growth rate more significant than that of the total world GDP.
+```{r plot_d}
+ggplot(india_vs_world,aes(x=Year,y=Growth))+geom_line(aes(color=Entity,group=Entity))+xlab("Year")+ylab("Growth of GDP relative to the year 1950")
+```
+
+## Conclusion
+
+Although the Indian approach towards finance managment tells a success story, other factors such as high population and high income inequalities remain a barrier India has to surpass to become a world superpower. Plotting real per capita GDP we infer that India still has a long way to go to achieve economic prosperty.The plot below shows the Real GDP of countries.
+```{r plot_e}
+ggplot(plot_countries,aes(x = Year,y= Real_GDP))+geom_line(aes(color = Entity,group = Entity))
+```
+
+## Sources
+- [Govt. of India open data](data.gov.in)
+
+- [Our World in data](ourworldindata.org)
