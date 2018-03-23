@@ -20,14 +20,15 @@ even though most nations saw industrialization as the ideal way to economic deve
 source("Comaprisons.R")
 library(shiny)
 library(DT)
+
 ```
 
 ## India GDP over the years
 
 ```{r india_GDP, include=TRUE}
 total_indian_gdp <- subset(gdp_data,select = c(Financial.Year,Gross.Domestic.Product..in.Rs..Cr..at.2004.05.Prices))
-names(total_indian_gdp) <- c("Year","GDP in Crores")
-DT::renderDataTable(total_indian_gdp)
+names(total_indian_gdp) <- c("Year","GDP_in_Crores")
+renderDataTable(total_indian_gdp)
 ```
 
 ## Indian GDP share
@@ -39,7 +40,21 @@ ggplot(plot_gdp, aes(x = Financial_year, y = Percentage_share)) + geom_line(aes(
 
 ```
 ```{r plot_b}
-ggplot(gdp_growth,aes(x = Agriculture, y = Services)) + geom_line()+ xlab("Percentage Growth of Agriculture to total GDP") + ylab("Percentage Growth of Service Sector to total GDP")
+
+  # Copy the line below to make a select box 
+   selectInput("sector", label = h3("Which Sector?"), 
+    choices = list("Agriculture" = "Agriculture" , "Agriculture allied services" = "Agriculture_allied_services", "Industry" = "Industry", "Mining and quarrying" = "Mining_and_quarrying", "Manufacturing"  ="Manufacturing","Services" ="Services"), 
+    selected = "Agriculture")
+  a <- renderPrint(input$sector)
+  factor(capture.output(a))
+   #p <- ggplot(gdp_growth,aes(Agriculture,gdp_growth[a])) + xlab("Agriculture growth") + ylab(input$sector)
+   #p + geom_line()
+  
+  
+
+
+
+
 ```
 
 ## Sector wise growth of Indian GDP
@@ -47,7 +62,7 @@ ggplot(gdp_growth,aes(x = Agriculture, y = Services)) + geom_line()+ xlab("Perce
 India being a nation with diversity in lifestyle(s), it becomes evident that the GDP growth over the years are erratic, and the result of several factors.
 
 ```{r plot_c}
-ggplot(plot_growth,aes(x = Financial_year,y= Percentage_growth))+geom_line(aes(color = Sector,group = Sector)) + xlab("Financial Year")+ylab("Percentage Growth")
+ggplot(plot_growth,aes(x = Financial_year,y= Percentage_growth))+geom_line(aes(color = Sector,group = Sector)) + xlab("Financial Year") + ylab("Percentage Growth")
 
 ```
 
