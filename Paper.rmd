@@ -20,6 +20,7 @@ even though most nations saw industrialization as the ideal way to economic deve
 source("Comaprisons.R")
 library(shiny)
 library(DT)
+library(ggvis)
 
 ```
 
@@ -40,21 +41,17 @@ ggplot(plot_gdp, aes(x = Financial_year, y = Percentage_share)) + geom_line(aes(
 
 ```
 ```{r plot_b}
+  ui <- fluidPage(sidebarLayout(
+    sidebarPanel(
+    selectInput(inputId = "x",label="Y-axis",choices=c("Agriculture" = "Agriculture","Agriculture Allied Services" = "Agriculture_allied_services","Industry"="Industry", "Mining and Quarrying"="Mining_and_quarrying","Manufacturing"="Manufacturing","Services"="Services"),selected = "Agriculture"),
+    
+    selectInput(inputId = "y",label="X-axis",choices=c("Agriculture" = "Agriculture","Agriculture Allied Services" = "Agriculture_allied_services","Industry"="Industry", "Mining and Quarrying"="Mining_and_quarrying","Manufacturing"="Manufacturing","Services"="Services"),selected = "Agriculture")),
+    mainPanel(plotOutput(outputId = "lineplot"))
+    ))
+server <- function(input,output){
+  output$lineplot <- renderPlot({ggplot(data = gdp_growth,aes_string(x=input$x,y=input$y))+geom_line()})}
 
-  # Copy the line below to make a select box 
-   selectInput("sector", label = h3("Which Sector?"), 
-    choices = list("Agriculture" = "Agriculture" , "Agriculture allied services" = "Agriculture_allied_services", "Industry" = "Industry", "Mining and quarrying" = "Mining_and_quarrying", "Manufacturing"  ="Manufacturing","Services" ="Services"), 
-    selected = "Agriculture")
-  a <- renderPrint(input$sector)
-  factor(capture.output(a))
-   #p <- ggplot(gdp_growth,aes(Agriculture,gdp_growth[a])) + xlab("Agriculture growth") + ylab(input$sector)
-   #p + geom_line()
-  
-  
-
-
-
-
+shinyApp(ui = ui ,server =server)
 ```
 
 ## Sector wise growth of Indian GDP
