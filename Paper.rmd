@@ -40,6 +40,9 @@ Pre-Independent India remained an agriculture based nation.However, there has be
 ggplot(plot_gdp, aes(x = Financial_year, y = Percentage_share)) + geom_line(aes(color = Sector,group = Sector))
 
 ```
+
+##Correlation and relationship between Sectors 
+
 ```{r plot_b}
   ui <- fluidPage(sidebarLayout(
     sidebarPanel(
@@ -50,7 +53,7 @@ ggplot(plot_gdp, aes(x = Financial_year, y = Percentage_share)) + geom_line(aes(
     ))
 server <- function(input,output){
   output$lineplot <- renderPlot({ggplot(data = gdp_growth,aes_string(x=input$x,y=input$y))+geom_line()})}
-
+output$Correlation <- renderPrint(lm(gdp_growth[input$x]~gdp_growth[input$y]))
 shinyApp(ui = ui ,server =server)
 ```
 
